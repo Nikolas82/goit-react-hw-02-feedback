@@ -6,16 +6,12 @@ import { Section } from './Section';
 import { Notification } from './Notification';
 
 export class App extends Component {
-  static defaultProps = {
+ 
+
+  state = {
     good: 0,
     neutral: 0,
     bad: 0,
-  };
-
-  state = {
-    good: this.props.good,
-    neutral: this.props.neutral,
-    bad: this.props.bad,
   };
 
   handleFeedback = type => {
@@ -39,7 +35,8 @@ export class App extends Component {
     const total = this.countTotalFeedback();
 
     const positivePercentage = this.countPositiveFeedbackPercentage();
-    const options = ['good', 'neutral', 'bad'];
+    
+    
 
     return (
       <div
@@ -56,7 +53,7 @@ export class App extends Component {
         <div>
           <Section title="Please leave feedback">
             <FeedbackOptions
-              options={options}
+              options={Object.keys(this.state)}
               onLeaveFeedback={this.handleFeedback}
             />
           </Section>
